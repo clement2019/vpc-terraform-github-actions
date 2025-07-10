@@ -6,6 +6,7 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [var.sg_id]
   subnet_id = var.subnets[count.index]
   availability_zone = data.aws_availability_zones.available.names[count.index]
+  #user_data                   = file("install-apache2.sh")
   user_data = <<EOF
   #!/bin/bash
     sudo yum update -y
